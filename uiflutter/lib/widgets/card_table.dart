@@ -8,17 +8,61 @@ class CardTableCustom extends StatelessWidget {
     return Table(
       //Coleccion de Rows
       children: [
-        TableRow(children: [_SingleCard(), _SingleCard()]),
-        TableRow(children: [_SingleCard(), _SingleCard()]),
-        TableRow(children: [_SingleCard(), _SingleCard()]),
-        TableRow(children: [_SingleCard(), _SingleCard()]),
+        TableRow(
+          children: [
+            _SingleCard(
+              color: Colors.blue,
+              icon: Icons.monetization_on_outlined,
+              text: 'General',
+            ),
+            _SingleCard(
+              color: Colors.indigoAccent,
+              icon: Icons.car_rental_outlined,
+              text: 'Transporte',
+            )
+          ],
+        ),
+        TableRow(
+          children: [
+            _SingleCard(
+              color: Colors.pink,
+              icon: Icons.shop_two,
+              text: 'Compras',
+            ),
+            _SingleCard(
+              color: Colors.orange,
+              icon: Icons.padding,
+              text: 'Facturas',
+            )
+          ],
+        ),
+        TableRow(
+          children: [
+            _SingleCard(
+              color: Colors.deepPurple,
+              icon: Icons.movie,
+              text: 'Cine',
+            ),
+            _SingleCard(
+              color: Colors.green,
+              icon: Icons.local_grocery_store,
+              text: 'Comestibles',
+            )
+          ],
+        ),
       ],
     );
   }
 }
 
 class _SingleCard extends StatelessWidget {
-  const _SingleCard({Key? key}) : super(key: key);
+  final IconData icon;
+  final Color color;
+  final String text;
+
+  const _SingleCard(
+      {Key? key, required this.icon, required this.color, required this.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +77,10 @@ class _SingleCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            backgroundColor: Colors.blue,
+            backgroundColor: color,
             radius: 30,
             child: Icon(
-              Icons.monetization_on_outlined,
+              icon,
               color: Colors.white,
               size: 35,
             ),
@@ -45,8 +89,9 @@ class _SingleCard extends StatelessWidget {
             height: 10,
           ),
           Text(
-            'General',
-            style: TextStyle(color: Colors.blue, fontSize: 15),
+            text,
+            style: TextStyle(
+                color: color, fontSize: 15, fontWeight: FontWeight.bold),
           ),
         ],
       ),
