@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uiflutter/screens/basic_desing.dart';
 
 void main() => runApp(MyApp());
 
@@ -6,23 +7,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        home: columnCustom());
-  }
-}
-
-class columnCustom extends StatelessWidget {
-  const columnCustom({
-    Key? key,
-  }) : super(key: key); //Hace referencia al Widget.
-
-  @override
-  Widget build(BuildContext context) {
-    //El build realiza las tareas de redibujado.
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text('data1'), Text('data2')],
+      debugShowCheckedModeBanner: false,
+      title: 'Material App',
+      initialRoute: 'basic_design',
+      routes: {'basic_design': (BuildContext context) => BasicDesignScreen()},
     );
   }
 }
