@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       initialRoute: 'home_design',
+      theme: ThemeData
+          .dark(), //Se aplica el theme Dark para ocultar la franja clara o blanca del blur.
       routes: {
         'basic_design': (_) => BasicDesignScreen(),
         'scroll_design': (_) => ScrollDesignScreen(),

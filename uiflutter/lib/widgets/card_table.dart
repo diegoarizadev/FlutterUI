@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class CardTableCustom extends StatelessWidget {
@@ -50,6 +52,20 @@ class CardTableCustom extends StatelessWidget {
             )
           ],
         ),
+        TableRow(
+          children: [
+            _SingleCard(
+              color: Colors.deepPurple,
+              icon: Icons.movie,
+              text: 'Cine',
+            ),
+            _SingleCard(
+              color: Colors.green,
+              icon: Icons.local_grocery_store,
+              text: 'Comestibles',
+            )
+          ],
+        ),
       ],
     );
   }
@@ -68,32 +84,46 @@ class _SingleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15), //Separacion entre las tarjetas
-      height: 180,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(62, 66, 107, 0.7),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: color,
-            radius: 30,
-            child: Icon(
-              icon,
-              color: Colors.white,
-              size: 35,
+      child: ClipRRect(
+        //fuerza a que el blur no se salga y esto lo hace para todos los demas widgets
+        borderRadius:
+            BorderRadius.circular(20), //Se agrega para mantener el Blur
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 5,
+            sigmaY: 5,
+          ),
+          child: Container(
+            //margin: EdgeInsets.all(15), //Separacion entre las tarjetas
+            height: 180,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(62, 66, 107, 0.7),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 30,
+                  child: Icon(
+                    icon,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(
+                      color: color, fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-                color: color, fontSize: 15, fontWeight: FontWeight.bold),
-          ),
-        ],
+        ),
       ),
     );
   }
