@@ -82,6 +82,43 @@ class _SingleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return _CardBackground(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            backgroundColor: color,
+            radius: 30,
+            child: Icon(
+              icon,
+              color: Colors.white,
+              size: 35,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            text,
+            style: TextStyle(
+              color: color,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CardBackground extends StatelessWidget {
+  final Widget child;
+
+  const _CardBackground({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15), //Separacion entre las tarjetas
       child: ClipRRect(
@@ -100,31 +137,11 @@ class _SingleCard extends StatelessWidget {
               color: Color.fromRGBO(62, 66, 107, 0.7),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  backgroundColor: color,
-                  radius: 30,
-                  child: Icon(
-                    icon,
-                    color: Colors.white,
-                    size: 35,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(
-                      color: color, fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
+            child: this.child,
           ),
         ),
       ),
     );
+    ;
   }
 }
