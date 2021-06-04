@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uiflutter/widgets/background.dart';
 import 'package:uiflutter/widgets/botton_navigation.dart';
+import 'package:uiflutter/widgets/card_table.dart';
 import 'package:uiflutter/widgets/page_title.dart';
 
 class HomeDesingScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class _HomeBody extends StatelessWidget {
     return SingleChildScrollView(
       //SingleChildScrollView si el hijo es mas grande va ha permitir realizar scroll
       child: Column(
-        children: [PageTitle()],
+        children: [PageTitle(), CardTableCustom()],
       ),
     );
   }
