@@ -251,15 +251,15 @@ class _HeaderWaves extends CustomPainter {
     path.lineTo(0, size.height * 0.25);
     //path.lineTo(size.width / 2, size.height * 0.25); //Linea recta hasta la mitad de la pantalla
     path.quadraticBezierTo(
-        size.width / 4,
-        size.height * 0.35,
-        size.width / 2,
+        size.width * 0.25,
+        size.height * 0.30,
+        size.width * 0.5,
         size.height *
             0.25); //Los dos primeros puntos hacen refenrencia al punto donde debe pasar la curva
     //path.lineTo(size.width / 2, 0);
     path.quadraticBezierTo(
-        size.width / 1.3,
-        size.height * 0.10,
+        size.width * 0.75,
+        size.height * 0.20,
         size.width,
         size.height *
             0.25); //Los dos primeros puntos hacen refenrencia al punto donde debe pasar la curva
