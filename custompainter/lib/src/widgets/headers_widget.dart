@@ -134,3 +134,44 @@ class _HeaderTrianglePainter extends CustomPainter {
     return true;
   }
 }
+
+class HeaderPico extends StatelessWidget {
+  const HeaderPico({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity, //Todo el alto
+      width: double.infinity, //Todo el ancho
+      child: CustomPaint(painter: _HeaderPico()),
+    );
+  }
+}
+
+class _HeaderPico extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    //Lienzo y tamaño de la pantalla
+
+    final paint = Paint();
+
+    paint.color = Colors.pinkAccent;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 40;
+
+    final path = Path();
+
+    path.lineTo(0, size.height * 0.20);
+    path.lineTo(size.width * 0.5, size.height * 0.30);
+    path.lineTo(size.width, size.height * 0.20);
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path,
+        paint); //Este elemento ejecuta las acciones anteriore o realiza los trazos.
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
