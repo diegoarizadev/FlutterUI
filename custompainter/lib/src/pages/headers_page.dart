@@ -1,3 +1,4 @@
+import 'package:custompainter/src/widgets/headers_widget.dart';
 import 'package:flutter/material.dart';
 
 class HeadersCustom extends StatefulWidget {
@@ -11,9 +12,7 @@ class _HeadersCustomState extends State<HeadersCustom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Hola!'),
-      ),
+      body: HeaderSqare(),
     );
   }
 }
