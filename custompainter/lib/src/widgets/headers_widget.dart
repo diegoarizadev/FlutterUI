@@ -61,15 +61,16 @@ class _HeaderDiagonalPainter extends CustomPainter {
     paint.strokeWidth = 5; //Ancho del lapiz
 
     final path = new Path(); //Dibujo de la forma.
+
     path.moveTo(
         0,
         size.height *
-            0.5); //El lapiz se va a mover del inicio (esquina superior izquierda) hasta la mitad inferior
+            0.35); //El lapiz se va a mover del inicio (esquina superior izquierda) hasta la mitad inferior
 
     path.lineTo(
         size.width,
         size.height *
-            0.5); //Segundo movimiento del lapiz, dibujar de la mitad inferior izquierda, hacia la derecha en linea recta.
+            0.30); //Segundo movimiento del lapiz, dibujar de la mitad inferior izquierda, hacia la derecha en linea recta.
 
     path.lineTo(size.width,
         0); //tercer movimiento del lapiz. de la mitad inferior derecha a la esquina superior derecha.
@@ -77,10 +78,10 @@ class _HeaderDiagonalPainter extends CustomPainter {
     path.lineTo(0,
         0); //cuarto movimiento del lapiz. desde la esquina superior derecha a la izquierda.
 
-    path.lineTo(
-        0,
-        size.height *
-            0.5); //quinto movimiento del lapiz. desde la esquina superior izquierda hasta la mitad de la pantalla del costado izquierdo
+    // path.lineTo(
+    //     0,
+    //     size.height *
+    //         0.5); //quinto movimiento del lapiz. desde la esquina superior izquierda hasta la mitad de la pantalla del costado izquierdo. ESTA LINEA ES OPCIONAL PARA EL RELLENO.
 
     canvas.drawPath(path,
         paint); //Este elemento ejecuta las acciones anteriore o realiza los trazos.
