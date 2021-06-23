@@ -56,7 +56,8 @@ class _HeaderDiagonalPainter extends CustomPainter {
     final paint = Paint(); //elemento para dibujar (Lapiz).
     //Propiedades del elemento paint.
     paint.color = Colors.orange; //Color del lapiz.
-    paint.style = PaintingStyle.stroke; //Relleno del lapiz
+    paint.style = PaintingStyle
+        .fill; //Relleno del lapiz, .storke dibuja lineas y .fill hace todo el relleno
     paint.strokeWidth = 5; //Ancho del lapiz
 
     final path = new Path(); //Dibujo de la forma.
