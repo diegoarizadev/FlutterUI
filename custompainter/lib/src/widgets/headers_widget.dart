@@ -274,3 +274,56 @@ class _HeaderWaves extends CustomPainter {
     return true;
   }
 }
+
+class HeaderWavesGradient extends StatelessWidget {
+  const HeaderWavesGradient({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity, //Todo el alto
+      width: double.infinity, //Todo el ancho
+      child: CustomPaint(painter: _HeaderWavesGradient()),
+    );
+  }
+}
+
+class _HeaderWavesGradient extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    //Lienzo y tamaño de la pantalla
+
+    final paint = Paint();
+
+    paint.color = Colors.lightBlueAccent;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 20;
+
+    final path = Path();
+
+    path.lineTo(0, size.height * 0.25);
+    //path.lineTo(size.width / 2, size.height * 0.25); //Linea recta hasta la mitad de la pantalla
+    path.quadraticBezierTo(
+        size.width * 0.25,
+        size.height * 0.30,
+        size.width * 0.5,
+        size.height *
+            0.25); //Los dos primeros puntos hacen refenrencia al punto donde debe pasar la curva
+    //path.lineTo(size.width / 2, 0);
+    path.quadraticBezierTo(
+        size.width * 0.75,
+        size.height * 0.20,
+        size.width,
+        size.height *
+            0.25); //Los dos primeros puntos hacen refenrencia al punto donde debe pasar la curva
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path,
+        paint); //Este elemento ejecuta las acciones anteriore o realiza los trazos.
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
