@@ -115,18 +115,15 @@ class _HeaderTrianglePainter extends CustomPainter {
 
     paint.color = Colors.red;
     paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 5;
+    paint.strokeWidth = 20;
 
     final path = Path();
 
-    path.lineTo(size.width,
-        size.height); //primer movimiento, de la esquina superior izquierda, a la esquina inferior derecha (diagonal)
+    path.lineTo(size.width, size.height);
 
-    path.lineTo(size.width,
-        0); //segundo movimiento, desde la esquina inferior derecha, hasta la esquina superior derecha (linea recta)
+    path.lineTo(0, size.height);
 
-    path.lineTo(0,
-        0); //tercer movimiento, desde la esquina superior derecha a la esquina superior izquierda
+    path.lineTo(0, 0);
 
     canvas.drawPath(path,
         paint); //Este elemento ejecuta las acciones anteriore o realiza los trazos.
