@@ -293,9 +293,20 @@ class _HeaderWavesGradient extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     //Lienzo y tamaño de la pantalla
 
-    final paint = Paint();
+    final Gradient gradiant = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: <Color>[
+        Colors.amberAccent,
+        Colors.black,
+        Colors.green,
+      ],
+    );
 
-    paint.color = Colors.lightBlueAccent;
+    final Rect rec = Rect.fromCircle(center: Offset(165.0, 55.0), radius: 180);
+
+    final paint = Paint()..shader = gradiant.createShader(rec);
+    //paint.color = Colors.lightBlueAccent;
     paint.style = PaintingStyle.fill;
     paint.strokeWidth = 20;
 
