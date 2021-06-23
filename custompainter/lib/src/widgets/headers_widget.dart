@@ -57,10 +57,10 @@ class _HeaderDiagonalPainter extends CustomPainter {
     //Propiedades del elemento paint.
     paint.color = Colors.orange; //Color del lapiz.
     paint.style = PaintingStyle
-        .fill; //Relleno del lapiz, .storke dibuja lineas y .fill hace todo el relleno
+        .fill; //Relleno del lapiz, .stroke dibuja lineas y .fill hace todo el relleno
     paint.strokeWidth = 5; //Ancho del lapiz
 
-    final path = new Path(); //Dibujo de la forma.
+    final path = Path(); //Dibujo de la forma.
 
     path.moveTo(
         0,
@@ -93,7 +93,6 @@ class _HeaderDiagonalPainter extends CustomPainter {
   }
 }
 
-//Cuadro/Header en forma de triangulo
 class HeaderTriangle extends StatelessWidget {
   const HeaderTriangle({Key? key}) : super(key: key);
 
@@ -102,9 +101,7 @@ class HeaderTriangle extends StatelessWidget {
     return Container(
       height: double.infinity, //Todo el alto
       width: double.infinity, //Todo el ancho
-      child: CustomPaint(
-        painter: _HeaderDiagonalPainter(),
-      ),
+      child: CustomPaint(painter: _HeaderTrianglePainter()),
     );
   }
 }
@@ -114,35 +111,22 @@ class _HeaderTrianglePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     //Lienzo y tamaño de la pantalla
 
-    final paint = Paint(); //elemento para dibujar (Lapiz).
-    //Propiedades del elemento paint.
-    paint.color = Colors.orange; //Color del lapiz.
-    paint.style = PaintingStyle
-        .fill; //Relleno del lapiz, .storke dibuja lineas y .fill hace todo el relleno
-    paint.strokeWidth = 5; //Ancho del lapiz
+    final paint = Paint();
 
-    final path = new Path(); //Dibujo de la forma.
+    paint.color = Colors.red;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 5;
 
-    path.moveTo(
-        0,
-        size.height *
-            0.35); //El lapiz se va a mover del inicio (esquina superior izquierda) hasta la mitad inferior
-
-    path.lineTo(
-        size.width,
-        size.height *
-            0.30); //Segundo movimiento del lapiz, dibujar de la mitad inferior izquierda, hacia la derecha en linea recta.
+    final path = Path();
 
     path.lineTo(size.width,
-        0); //tercer movimiento del lapiz. de la mitad inferior derecha a la esquina superior derecha.
+        size.height); //primer movimiento, de la esquina superior izquierda, a la esquina inferior derecha (diagonal)
+
+    path.lineTo(size.width,
+        0); //segundo movimiento, desde la esquina inferior derecha, hasta la esquina superior derecha (linea recta)
 
     path.lineTo(0,
-        0); //cuarto movimiento del lapiz. desde la esquina superior derecha a la izquierda.
-
-    // path.lineTo(
-    //     0,
-    //     size.height *
-    //         0.5); //quinto movimiento del lapiz. desde la esquina superior izquierda hasta la mitad de la pantalla del costado izquierdo. ESTA LINEA ES OPCIONAL PARA EL RELLENO.
+        0); //tercer movimiento, desde la esquina superior derecha a la esquina superior izquierda
 
     canvas.drawPath(path,
         paint); //Este elemento ejecuta las acciones anteriore o realiza los trazos.
@@ -150,6 +134,6 @@ class _HeaderTrianglePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true; //Se coloca true, ya que el grafico a realizar no es tan pesado, en caso de serlo (peasdo), se debe cambiar.
+    return true;
   }
 }
