@@ -12,7 +12,7 @@ class _HeadersCustomState extends State<HeadersCustom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeaderPico(),
+      body: HeaderCircle(),
     );
   }
 }
