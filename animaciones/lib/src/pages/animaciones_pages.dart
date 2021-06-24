@@ -32,6 +32,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
   late Animation<double> opacidad; //Objeto animar.
   late Animation<double> moverDer; //Objeto animar.
   late Animation<double> escalar; //Objeto animar.
+  late Animation<double> opacidadOut; //Objeto animar.
 
   @override
   void initState() {
@@ -52,6 +53,13 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       CurvedAnimation(
         parent: controller,
         curve: const Interval(0, 0.25, curve: Curves.easeOut),
+      ),
+    ); //Traslucidad del objeto
+
+    opacidadOut = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(0.75, 1.0, curve: Curves.easeOut),
       ),
     ); //Traslucidad del objeto
 
@@ -100,7 +108,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
               //Se aplica la animación para verlo en la pantalla
               angle: rotacion.value,
               child: Opacity(
-                opacity: opacidad.value,
+                opacity: opacidad.value - opacidadOut.value,
                 child: Transform.scale(
                   scale: escalar.value,
                   child: child,
