@@ -30,6 +30,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
   late AnimationController controller; //control para manejar la animacion
   late Animation<double> rotacion; //Objeto animar, para este caso rotar.
   late Animation<double> opacidad; //Objeto animar.
+  late Animation<double> moverDer; //Objeto animar.
 
   @override
   void initState() {
@@ -49,9 +50,12 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     opacidad = Tween(begin: 0.1, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Interval(0, 0.25, curve: Curves.easeOut),
+        curve: const Interval(0, 0.25, curve: Curves.easeOut),
       ),
     ); //Traslucidad del objeto
+
+    moverDer = Tween(begin: 0.0, end: 200.0).animate(CurvedAnimation(
+        parent: controller, curve: Curves.easeInOutBack)); //Mover el objeto.
 
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
@@ -82,13 +86,16 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       child: _Rectangulo(), //Opcional.!
       builder: (BuildContext context, Widget? child) {
         print(rotacion.value);
-        return Transform.rotate(
-            //Se aplica la animación para verlo en la pantalla
-            angle: rotacion.value,
-            child: Opacity(
-              opacity: opacidad.value,
-              child: child,
-            ));
+        return Transform.translate(
+          offset: Offset(moverDer.value, 0), //mover a la derecha
+          child: Transform.rotate(
+              //Se aplica la animación para verlo en la pantalla
+              angle: rotacion.value,
+              child: Opacity(
+                opacity: opacidad.value,
+                child: child,
+              )),
+        );
       },
     );
   }
