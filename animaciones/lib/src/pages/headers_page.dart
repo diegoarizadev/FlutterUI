@@ -1,4 +1,4 @@
-import 'package:custompainter/src/widgets/headers_widget.dart';
+import 'package:custompainter/src/widgets/headersCustom_widget.dart';
 import 'package:flutter/material.dart';
 
 class HeadersCustom extends StatefulWidget {
