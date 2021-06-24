@@ -1,4 +1,4 @@
-# animaciones
+# custompainter
 
 A new Flutter project.
 
