@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as Math;
 
 class AnimacionesPages extends StatelessWidget {
   const AnimacionesPages({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     rotacion = Tween(
       //Tipo de animación a ejecutar
       begin: 0.0, //Inicio de la animación, para este caso 0.0 grados.
-      end: 2.0, //Fin de la animación, para este caso 2.0 grados.
+      end: 2 * Math.pi, //Fin de la animación, 2 vueltas
     ).animate(controller); //Controlador de la animación.
 
     controller.addListener(() {
@@ -48,11 +49,9 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
         //Si la animación termino.
 
         controller.reverse(); //Se realizara la inversa de la animación.
-      } else if (controller.status == AnimationStatus.dismissed) {
-        controller.forward(); //vuelva a iniciar
       }
     });
-
+    controller.forward(); //Iniciar animación, mejor control en esta ubicación.
     super.initState();
   }
 
@@ -64,8 +63,8 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
   @override
   Widget build(BuildContext context) {
-    controller.forward(); //Iniciar animación.
-
+    // controller.forward(); //Iniciar animación.
+    controller.repeat(); //Iniciar animación.
     return AnimatedBuilder(
       animation: controller, //Controlador de la animación
       child: _Rectangulo(), //Opcional.!
