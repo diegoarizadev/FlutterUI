@@ -64,7 +64,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
 //Se pueden controlar todas las etapas de la animación.
-      print('addListener = Status :${controller.status} ');
+      //print('addListener = Status :${controller.status} ');
       if (controller.status == AnimationStatus.completed) {
         //Si la animación termino.
 
@@ -89,6 +89,10 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       animation: controller, //Controlador de la animación
       child: _Rectangulo(), //Opcional.!
       builder: (BuildContext context, Widget? child) {
+        print(
+            'builder = Opacidad :${opacidad.value} '); //identificar cuando una animación llego al final.
+        print(
+            'builder = rotacion :${rotacion.value} '); //identificar cuando una animación llego al final.
         print(rotacion.value);
         return Transform.translate(
           offset: Offset(moverDer.value, 0), //mover a la derecha
