@@ -29,6 +29,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
   @override
   void initState() {
+    //Se ejecuta la primera vez que se ejecuta la App y se pueden colocar listener.
     controller = AnimationController(
         vsync: this, //Cuadros por segundo
         duration: const Duration(milliseconds: 4000));
@@ -38,6 +39,19 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       begin: 0.0, //Inicio de la animación, para este caso 0.0 grados.
       end: 2.0, //Fin de la animación, para este caso 2.0 grados.
     ).animate(controller); //Controlador de la animación.
+
+    controller.addListener(() {
+      //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
+//Se pueden controlar todas las etapas de la animación.
+      print('addListener = Status :${controller.status} ');
+      if (controller.status == AnimationStatus.completed) {
+        //Si la animación termino.
+
+        controller.reverse(); //Se realizara la inversa de la animación.
+      } else if (controller.status == AnimationStatus.dismissed) {
+        controller.forward(); //vuelva a iniciar
+      }
+    });
 
     super.initState();
   }
