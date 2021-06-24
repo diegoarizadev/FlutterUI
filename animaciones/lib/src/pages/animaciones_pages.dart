@@ -54,13 +54,13 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
     return AnimatedBuilder(
       animation: controller, //Controlador de la animación
-      // child: _Rectangulo(), //Opcional.!
+      child: _Rectangulo(), //Opcional.!
       builder: (BuildContext context, Widget? child) {
         print(rotacion.value);
         return Transform.rotate(
             //Se aplica la animación para verlo en la pantalla
             angle: rotacion.value,
-            child: _Rectangulo());
+            child: child);
       },
     );
   }
