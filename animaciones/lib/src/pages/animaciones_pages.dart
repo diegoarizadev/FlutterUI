@@ -46,8 +46,12 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
         parent: controller,
         curve: Curves.easeInOutBack)); //Controlador de la animación.
 
-    opacidad = Tween(begin: 0.1, end: 1.0)
-        .animate(controller); //Traslucidad del objeto
+    opacidad = Tween(begin: 0.1, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Interval(0, 0.25, curve: Curves.easeOut),
+      ),
+    ); //Traslucidad del objeto
 
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
