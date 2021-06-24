@@ -31,6 +31,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
   late Animation<double> rotacion; //Objeto animar, para este caso rotar.
   late Animation<double> opacidad; //Objeto animar.
   late Animation<double> moverDer; //Objeto animar.
+  late Animation<double> escalar; //Objeto animar.
 
   @override
   void initState() {
@@ -56,6 +57,9 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
     moverDer = Tween(begin: 0.0, end: 200.0).animate(CurvedAnimation(
         parent: controller, curve: Curves.easeInOutBack)); //Mover el objeto.
+
+    escalar = Tween(begin: 0.0, end: 2.0).animate(CurvedAnimation(
+        parent: controller, curve: Curves.easeInOutBack)); //Escalar el objeto.
 
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
@@ -93,7 +97,10 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
               angle: rotacion.value,
               child: Opacity(
                 opacity: opacidad.value,
-                child: child,
+                child: Transform.scale(
+                  scale: escalar.value,
+                  child: child,
+                ),
               )),
         );
       },
