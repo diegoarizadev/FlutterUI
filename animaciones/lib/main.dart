@@ -1,4 +1,3 @@
-import 'package:custompainter/src/pages/animaciones_pages.dart';
 import 'package:custompainter/src/reto/cuadrado_animado.dart';
 import 'package:flutter/material.dart';
 
