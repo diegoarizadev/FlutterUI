@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
 
@@ -27,6 +29,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
   late AnimationController controller; //control para manejar la animacion
   late Animation<double> rotacion; //Objeto animar, para este caso rotar.
+  late Animation<double> opacidad; //Objeto animar.
 
   @override
   void initState() {
@@ -42,6 +45,9 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
     ).animate(CurvedAnimation(
         parent: controller,
         curve: Curves.easeInOutBack)); //Controlador de la animación.
+
+    opacidad = Tween(begin: 0.1, end: 1.0)
+        .animate(controller); //Traslucidad del objeto
 
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
@@ -65,8 +71,8 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
 
   @override
   Widget build(BuildContext context) {
-    // controller.forward(); //Iniciar animación.
-    controller.repeat(); //Iniciar animación.
+    controller.forward(); //Iniciar animación.
+    //controller.repeat(); //Iniciar animación.
     return AnimatedBuilder(
       animation: controller, //Controlador de la animación
       child: _Rectangulo(), //Opcional.!
@@ -75,7 +81,10 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
         return Transform.rotate(
             //Se aplica la animación para verlo en la pantalla
             angle: rotacion.value,
-            child: child);
+            child: Opacity(
+              opacity: opacidad.value,
+              child: child,
+            ));
       },
     );
   }
