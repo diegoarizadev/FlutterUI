@@ -39,7 +39,9 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       //Tipo de animación a ejecutar
       begin: 0.0, //Inicio de la animación, para este caso 0.0 grados.
       end: 2 * Math.pi, //Fin de la animación, 2 vueltas
-    ).animate(controller); //Controlador de la animación.
+    ).animate(CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInOutBack)); //Controlador de la animación.
 
     controller.addListener(() {
       //Cada vez que la animación cambia, este controlador sabe en que estado estado se encuentra (termino, inicio, en ejecucion) en fin..
@@ -48,7 +50,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado>
       if (controller.status == AnimationStatus.completed) {
         //Si la animación termino.
 
-        controller.reverse(); //Se realizara la inversa de la animación.
+        controller.reset(); //Se realizara la inversa de la animación.
       }
     });
     controller.forward(); //Iniciar animación, mejor control en esta ubicación.
