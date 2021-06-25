@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,13 @@ class CircularProgressCustom extends StatefulWidget {
   _CircularProgressCustomState createState() => _CircularProgressCustomState();
 }
 
-class _CircularProgressCustomState extends State<CircularProgressCustom> {
-  double percentage = 10;
+class _CircularProgressCustomState extends State<CircularProgressCustom>
+    with SingleTickerProviderStateMixin {
+  double percentage = 0.0;
+  double newPercentage = 0.0;
+
+  late AnimationController controller;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +25,15 @@ class _CircularProgressCustomState extends State<CircularProgressCustom> {
           backgroundColor: Colors.green,
           onPressed: () {
             setState(() {
-              percentage += 10; //Incremento de 10 en 10
-              if (percentage > 100) {
+              percentage = newPercentage;
+              newPercentage += 10; //Incremento de 10 en 10
+              if (newPercentage > 100) {
+                newPercentage = 0;
                 percentage = 0;
               }
+              controller.forward(
+                  from:
+                      0.0); //from; se puede controlar el punto inicial, se especifica entre 0 y 1
             });
           }),
       body: Center(
@@ -36,6 +47,29 @@ class _CircularProgressCustomState extends State<CircularProgressCustom> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
+
+    controller.addListener(() {
+      //print('Valor controller ${controller.value}');
+
+      setState(() {
+        percentage = lerpDouble(percentage, newPercentage,
+            controller.value)!; //Interpolar dos numeros.
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
 
