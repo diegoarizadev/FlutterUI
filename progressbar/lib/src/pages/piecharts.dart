@@ -29,7 +29,7 @@ class _PieChartsCustomState extends State<PieChartsCustom> {
         child: Container(
           width: 400,
           height: 400,
-          color: Colors.orange,
+          //color: Colors.orange,
           child: RadialProgressCustom(percentage: 40),
           //Text('$porcentage %',
           //     style:
