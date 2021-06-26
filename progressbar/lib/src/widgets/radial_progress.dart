@@ -4,8 +4,17 @@ import 'package:flutter/material.dart';
 
 class RadialProgressCustom extends StatefulWidget {
   final double percentage;
+  final Color colorPrimary;
+  final Color colorSecundary;
+  final double thicknessPrimary;
+  final double thicknessSecundary;
 
-  const RadialProgressCustom({required this.percentage});
+  RadialProgressCustom(
+      {required this.percentage,
+      required this.colorPrimary,
+      required this.colorSecundary,
+      required this.thicknessPrimary,
+      required this.thicknessSecundary});
 
   @override
   _RadialProgressCustomState createState() => _RadialProgressCustomState();
@@ -35,8 +44,12 @@ class _RadialProgressCustomState extends State<RadialProgressCustom>
           height: double.infinity, //Ocupa todo el espacio del padre.
           child: CustomPaint(
               painter: _MiRadialProgress(
-                  (widget.percentage - diferenceAnimated) +
-                      (diferenceAnimated * controller.value))),
+                  percentage: ((widget.percentage - diferenceAnimated) +
+                      (diferenceAnimated * controller.value)),
+                  colorPrimary: widget.colorPrimary,
+                  colorSecundary: widget.colorSecundary,
+                  thicknessPrimary: widget.thicknessPrimary,
+                  thicknessSecundary: widget.thicknessSecundary)),
         );
       },
     );
@@ -66,14 +79,23 @@ class _RadialProgressCustomState extends State<RadialProgressCustom>
 
 class _MiRadialProgress extends CustomPainter {
   final double percentage;
+  final Color colorPrimary;
+  final Color colorSecundary;
+  final double thicknessPrimary;
+  final double thicknessSecundary;
 
-  _MiRadialProgress(this.percentage);
+  _MiRadialProgress(
+      {required this.percentage,
+      required this.colorPrimary,
+      required this.colorSecundary,
+      required this.thicknessPrimary,
+      required this.thicknessSecundary});
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint() //Lapiz
-      ..strokeWidth = 2
-      ..color = Colors.grey
+      ..strokeWidth = thicknessSecundary
+      ..color = colorSecundary
       ..style = PaintingStyle.stroke;
 
     final Offset centro =
@@ -89,8 +111,8 @@ class _MiRadialProgress extends CustomPainter {
 
     //Arco
     final paintArco = Paint() //Lapiz
-      ..strokeWidth = 10
-      ..color = Colors.red
+      ..strokeWidth = thicknessPrimary
+      ..color = colorPrimary
       ..style = PaintingStyle.stroke;
 
     //Parte que se debe ir llenando.

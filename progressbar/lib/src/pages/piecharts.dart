@@ -25,14 +25,15 @@ class _PieChartsCustomState extends State<PieChartsCustom> {
       ),
       body: Center(
         child: Container(
-          width: 400,
-          height: 400,
-          //color: Colors.orange,
-          child: RadialProgressCustom(percentage: percentage),
-          //Text('$porcentage %',
-          //     style:
-          //         const TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold)),
-        ),
+            width: 400,
+            height: 400,
+            child: RadialProgressCustom(
+              percentage: percentage,
+              colorPrimary: Colors.green,
+              colorSecundary: Colors.grey.shade300,
+              thicknessPrimary: 10.0,
+              thicknessSecundary: 10.0,
+            )),
       ),
     );
   }
