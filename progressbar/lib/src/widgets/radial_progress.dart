@@ -113,6 +113,7 @@ class _MiRadialProgress extends CustomPainter {
     final paintArco = Paint() //Lapiz
       ..strokeWidth = thicknessPrimary
       ..color = colorPrimary
+      ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
     //Parte que se debe ir llenando.
