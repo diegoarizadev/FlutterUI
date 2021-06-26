@@ -3,28 +3,69 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class RadialProgressCustom extends StatefulWidget {
-  final percentage;
+  final double percentage;
 
-  const RadialProgressCustom({this.percentage});
+  const RadialProgressCustom({required this.percentage});
 
   @override
   _RadialProgressCustomState createState() => _RadialProgressCustomState();
 }
 
-class _RadialProgressCustomState extends State<RadialProgressCustom> {
+class _RadialProgressCustomState extends State<RadialProgressCustom>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late double porcentageAdove;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      width: double.infinity, //Ocupa todo el espacio del padre.
-      height: double.infinity, //Ocupa todo el espacio del padre.
-      child: CustomPaint(painter: _MiRadialProgress(widget.percentage)),
+    controller.forward(
+        from:
+            0.0); //iniciar la animación y cada vez que se reinicie el widget empezara en 0
+
+    //diferencia para animar.
+    final double diferenceAnimated = widget.percentage - porcentageAdove;
+    porcentageAdove = widget.percentage;
+
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (BuildContext context, Widget? child) {
+        return Container(
+          padding: const EdgeInsets.all(10.0),
+          width: double.infinity, //Ocupa todo el espacio del padre.
+          height: double.infinity, //Ocupa todo el espacio del padre.
+          child: CustomPaint(
+              painter: _MiRadialProgress(
+                  (widget.percentage - diferenceAnimated) +
+                      (diferenceAnimated * controller.value))),
+        );
+      },
     );
+  }
+
+  @override
+  void initState() {
+    //Configuración de la animación
+
+    porcentageAdove = widget.percentage; //Valor enviado inicialmente.
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+    );
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
 
 class _MiRadialProgress extends CustomPainter {
-  final percentage;
+  final double percentage;
 
   _MiRadialProgress(this.percentage);
 
@@ -47,14 +88,12 @@ class _MiRadialProgress extends CustomPainter {
         paint);
 
     //Arco
-
     final paintArco = Paint() //Lapiz
       ..strokeWidth = 10
-      ..color = Colors.green
+      ..color = Colors.red
       ..style = PaintingStyle.stroke;
 
     //Parte que se debe ir llenando.
-
     double arcAngle = 2 *
         pi *
         (percentage /

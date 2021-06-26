@@ -1,4 +1,3 @@
-import 'package:custompainter/src/labs/circular_progress_page.dart';
 import 'package:custompainter/src/pages/piecharts.dart';
 
 import 'package:flutter/material.dart';
