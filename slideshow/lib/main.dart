@@ -1,4 +1,5 @@
 import 'package:custompainter/src/pages/piecharts.dart';
+import 'package:custompainter/src/pages/slideshow_pages.dart';
 
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: PieChartsCustom(),
+      home: SlideShowPage(),
     );
   }
 }
