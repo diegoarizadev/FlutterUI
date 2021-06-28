@@ -10,7 +10,15 @@ class _SlideShowPageState extends State<SlideShowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _Slides()),
+      body: Center(
+          child: Column(
+        children: [
+          Expanded(
+            child: _Slides(),
+          ),
+          _Dots()
+        ],
+      )),
     );
   }
 }
@@ -42,6 +50,42 @@ class _Slide extends StatelessWidget {
       height: double.infinity,
       padding: const EdgeInsets.all(30),
       child: SvgPicture.asset(svg),
+    );
+  }
+}
+
+class _Dots extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 70,
+      //color: Colors.green,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [_Dot(), _Dot(), _Dot()],
+      ),
+    );
+  }
+}
+
+class _Dot extends StatelessWidget {
+  const _Dot({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: 5,
+      ),
+      width: 12,
+      height: 12,
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        shape: BoxShape.circle,
+      ),
     );
   }
 }
