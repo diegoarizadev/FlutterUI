@@ -23,11 +23,20 @@ class _SlideShowPageState extends State<SlideShowPage> {
   }
 }
 
-class _Slides extends StatelessWidget {
+class _Slides extends StatefulWidget {
+  @override
+  State<_Slides> createState() => _SlidesState();
+}
+
+class _SlidesState extends State<_Slides> {
+  final pageViewController =
+      PageController(); //Retornada la información del estado del pageView
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: PageView(
+        controller: pageViewController, //Asigna el controlador
         children: [
           _Slide('assets/svg/s1.svg'),
           _Slide('assets/svg/s2.svg'),
@@ -35,6 +44,22 @@ class _Slides extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // Listener para escuchar el cambio de la pantalla.
+    super.initState();
+
+    pageViewController.addListener(() {
+      print('Pagina Actual : ${pageViewController.page}');
+    });
+  }
+
+  @override
+  void dispose() {
+    pageViewController.dispose();
+    super.dispose();
   }
 }
 
@@ -63,16 +88,16 @@ class _Dots extends StatelessWidget {
       //color: Colors.green,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [_Dot(), _Dot(), _Dot()],
+        children: [_Dot(0), _Dot(1), _Dot(2)],
       ),
     );
   }
 }
 
 class _Dot extends StatelessWidget {
-  const _Dot({
-    Key? key,
-  }) : super(key: key);
+  final int index;
+
+  const _Dot(this.index);
 
   @override
   Widget build(BuildContext context) {
