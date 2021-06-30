@@ -1,5 +1,7 @@
+import 'package:custompainter/src/models/slider_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class SlideShowPage extends StatefulWidget {
   @override
@@ -9,16 +11,20 @@ class SlideShowPage extends StatefulWidget {
 class _SlideShowPageState extends State<SlideShowPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Column(
-        children: [
-          Expanded(
-            child: _Slides(),
-          ),
-          _Dots()
-        ],
-      )),
+    return ChangeNotifierProvider(
+      //Se agrega el provider en el scaffold ya que es el elemento que contiene a tanto los slides como a los puntos.
+      create: (_) => new SliderModel(), //instancia unica y global del provider.
+      child: Scaffold(
+        body: Center(
+            child: Column(
+          children: [
+            Expanded(
+              child: _Slides(),
+            ),
+            _Dots()
+          ],
+        )),
+      ),
     );
   }
 }
@@ -53,6 +59,9 @@ class _SlidesState extends State<_Slides> {
 
     pageViewController.addListener(() {
       print('Pagina Actual : ${pageViewController.page}');
+      //Instanciar el provider.
+      Provider.of<SliderModel>(context, listen: false).currentPage =
+          pageViewController.page!;
     });
   }
 
@@ -101,6 +110,9 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageViewIndex =
+        Provider.of<SliderModel>(context).currentPage; //Recupera el index.
+
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: 5,
@@ -108,7 +120,7 @@ class _Dot extends StatelessWidget {
       width: 12,
       height: 12,
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: (pageViewIndex == index) ? Colors.blue : Colors.orange,
         shape: BoxShape.circle,
       ),
     );

@@ -5,8 +5,8 @@ class SliderModel with ChangeNotifier {
 
   double get currentPage => this._currentPage;
 
-  set currentPage(double currentePage) {
-    this.currentPage = currentePage;
+  set currentPage(double currentNewPage) {
+    this._currentPage = currentNewPage;
     notifyListeners(); //Notiuficara el cambio a todos los widgets que esten escuchando.
   }
 }
