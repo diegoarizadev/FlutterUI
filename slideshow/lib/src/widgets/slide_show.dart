@@ -3,27 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class SlideShowPage extends StatefulWidget {
-  @override
-  _SlideShowPageState createState() => _SlideShowPageState();
-}
-
-class _SlideShowPageState extends State<SlideShowPage> {
+class SlideShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      //Se agrega el provider en el scaffold ya que es el elemento que contiene a tanto los slides como a los puntos.
-      create: (_) => new SliderModel(), //instancia unica y global del provider.
-      child: Scaffold(
-        body: Center(
-            child: Column(
+      create: (_) => new SliderModel(),
+      child: Center(
+        child: Column(
           children: [
             Expanded(
               child: _Slides(),
             ),
             _Dots()
           ],
-        )),
+        ),
       ),
     );
   }
