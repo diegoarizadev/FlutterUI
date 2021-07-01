@@ -13,13 +13,7 @@ class SlideShowCustomPage extends StatelessWidget {
           SvgPicture.asset('assets/svg/s3.svg'),
           SvgPicture.asset('assets/svg/s4.svg'),
           SvgPicture.asset('assets/svg/s5.svg'),
-          SvgPicture.asset('assets/svg/s6.svg'),
-          Text('Hi slides'),
-          Container(
-            width: 200,
-            height: 200,
-            color: Colors.green,
-          )
+          SvgPicture.asset('assets/svg/s6.svg')
         ],
       ),
     );

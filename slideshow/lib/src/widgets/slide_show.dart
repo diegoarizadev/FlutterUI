@@ -18,7 +18,7 @@ class SlideShow extends StatelessWidget {
             Expanded(
               child: _Slides(this.slidesImages),
             ),
-            _Dots()
+            _Dots(this.slidesImages.length)
           ],
         ),
       ),
@@ -87,6 +87,10 @@ class _Slide extends StatelessWidget {
 }
 
 class _Dots extends StatelessWidget {
+  final int totalSlide;
+
+  _Dots(this.totalSlide); //Constructor
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -95,7 +99,8 @@ class _Dots extends StatelessWidget {
       //color: Colors.green,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [_Dot(0), _Dot(1), _Dot(2)],
+        children: List.generate(this.totalSlide,
+            (index) => _Dot(index)), //Generated, gerena una lista.
       ),
     );
   }
