@@ -8,13 +8,18 @@ class SlideShow extends StatelessWidget {
   final bool pointsUp;
   final Color colorPrimary;
   final Color colorSecundary;
+  final double bulletPrimary;
+  final double bulletSecundary;
 
-  const SlideShow(
-      {required this.slidesImages,
-      this.pointsUp =
-          false, //Se inicializa en false, para finar los puntos en la parte inferior de la pantalla
-      this.colorPrimary = Colors.red,
-      this.colorSecundary = Colors.grey});
+  const SlideShow({
+    required this.slidesImages,
+    this.pointsUp =
+        false, //Se inicializa en false, para finar los puntos en la parte inferior de la pantalla
+    this.colorPrimary = Colors.red,
+    this.colorSecundary = Colors.grey,
+    this.bulletPrimary: 12.0,
+    this.bulletSecundary: 12.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,11 @@ class SlideShow extends StatelessWidget {
                   this.colorPrimary;
               Provider.of<SlideShowModel>(context).colorSecundary =
                   this.colorSecundary;
+              Provider.of<SlideShowModel>(context).bulletPrimary =
+                  this.bulletPrimary;
+              Provider.of<SlideShowModel>(context).bulletSecundary =
+                  this.bulletSecundary;
+
               return createEstructureSlideShow(
                   pointsUp: pointsUp, slidesImages: slidesImages);
             },
@@ -154,19 +164,27 @@ class _Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final slideShowModel = Provider.of<SlideShowModel>(context);
+    double tamano = 0.0;
+    Color color;
+
+    if (slideShowModel.currentPage >= index - 0.5 &&
+        slideShowModel.currentPage < index + 0.5) {
+      tamano = slideShowModel.bulletPrimary;
+      color = slideShowModel.colorPrimary;
+    } else {
+      tamano = slideShowModel.bulletSecundary;
+      color = slideShowModel.colorSecundary;
+    }
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
       margin: EdgeInsets.symmetric(
         horizontal: 5,
       ),
-      width: 12,
-      height: 12,
+      width: tamano,
+      height: tamano,
       decoration: BoxDecoration(
-        color: (slideShowModel.currentPage >= index - 0.5 &&
-                slideShowModel.currentPage < index + 0.5)
-            ? slideShowModel.colorPrimary
-            : slideShowModel.colorSecundary,
+        color: color,
         shape: BoxShape.circle,
       ),
     );

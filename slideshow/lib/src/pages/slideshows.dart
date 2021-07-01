@@ -8,6 +8,8 @@ class SlideShowCustomPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.orange,
       body: SlideShow(
+        bulletPrimary: 25,
+        bulletSecundary: 12,
         pointsUp: true,
         slidesImages: [
           SvgPicture.asset('assets/svg/s1.svg'),
