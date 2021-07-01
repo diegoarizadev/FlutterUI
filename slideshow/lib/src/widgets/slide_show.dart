@@ -19,24 +19,49 @@ class SlideShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => new SliderModel(),
+      create: (_) => new SlideShowModel(),
       child: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              if (this.pointsUp)
-                _Dots(this.slidesImages.length, this.colorPrimary,
-                    this.colorSecundary),
-              Expanded(
-                child: _Slides(this.slidesImages),
-              ),
-              if (!this.pointsUp)
-                _Dots(this.slidesImages.length, this.colorPrimary,
-                    this.colorSecundary),
-            ],
+          child: Builder(
+            //Contruye primero el ChangeNotifierProvider y luego construye lo que este dentro de la función.
+            builder: (BuildContext context) {
+              Provider.of<SlideShowModel>(context).colorPrimary =
+                  this.colorPrimary;
+              Provider.of<SlideShowModel>(context).colorSecundary =
+                  this.colorSecundary;
+              return createEstructureSlideShow(
+                  pointsUp: pointsUp, slidesImages: slidesImages);
+            },
           ),
         ),
       ),
+    );
+  }
+}
+
+class createEstructureSlideShow extends StatelessWidget {
+  const createEstructureSlideShow({
+    Key? key,
+    required this.pointsUp,
+    required this.slidesImages,
+  }) : super(key: key);
+
+  final bool pointsUp;
+  final List<Widget> slidesImages;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        if (this.pointsUp) _Dots(this.slidesImages.length),
+        Expanded(
+          child: _Slides(this.slidesImages),
+        ),
+        if (!this.pointsUp)
+          _Dots(
+            this.slidesImages.length,
+          ),
+      ],
     );
   }
 }
@@ -73,7 +98,7 @@ class _SlidesState extends State<_Slides> {
     pageViewController.addListener(() {
       print('Pagina Actual : ${pageViewController.page}');
       //Instanciar el provider.
-      Provider.of<SliderModel>(context, listen: false).currentPage =
+      Provider.of<SlideShowModel>(context, listen: false).currentPage =
           pageViewController.page!;
     });
   }
@@ -103,10 +128,8 @@ class _Slide extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
   final int totalSlide;
-  final Color colorPrimary;
-  final Color colorSecundary;
 
-  _Dots(this.totalSlide, this.colorPrimary, this.colorSecundary); //Constructor
+  _Dots(this.totalSlide); //Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +139,8 @@ class _Dots extends StatelessWidget {
       //color: Colors.green,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-            this.totalSlide,
-            (index) => _Dot(index, this.colorPrimary,
-                this.colorSecundary)), //Generated, gerena una lista.
+        children: List.generate(this.totalSlide,
+            (index) => _Dot(index)), //Generated, gerena una lista.
       ),
     );
   }
@@ -127,15 +148,12 @@ class _Dots extends StatelessWidget {
 
 class _Dot extends StatelessWidget {
   final int index;
-  final Color colorPrimary;
-  final Color colorSecundary;
 
-  const _Dot(this.index, this.colorPrimary, this.colorSecundary);
+  const _Dot(this.index);
 
   @override
   Widget build(BuildContext context) {
-    final pageViewIndex =
-        Provider.of<SliderModel>(context).currentPage; //Recupera el index.
+    final slideShowModel = Provider.of<SlideShowModel>(context);
 
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
@@ -145,9 +163,10 @@ class _Dot extends StatelessWidget {
       width: 12,
       height: 12,
       decoration: BoxDecoration(
-        color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
-            ? this.colorPrimary
-            : this.colorSecundary,
+        color: (slideShowModel.currentPage >= index - 0.5 &&
+                slideShowModel.currentPage < index + 0.5)
+            ? slideShowModel.colorPrimary
+            : slideShowModel.colorSecundary,
         shape: BoxShape.circle,
       ),
     );

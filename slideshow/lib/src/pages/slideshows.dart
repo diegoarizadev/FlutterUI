@@ -17,8 +17,8 @@ class SlideShowCustomPage extends StatelessWidget {
           SvgPicture.asset('assets/svg/s5.svg'),
           SvgPicture.asset('assets/svg/s6.svg')
         ],
-        colorPrimary: Colors.red,
-        colorSecundary: Colors.grey,
+        colorPrimary: Colors.green,
+        colorSecundary: Colors.black,
       ),
     );
   }
