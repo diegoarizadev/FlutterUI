@@ -5,21 +5,36 @@ import 'package:provider/provider.dart';
 
 class SlideShow extends StatelessWidget {
   final List<Widget> slidesImages;
+  final bool pointsUp;
+  final Color colorPrimary;
+  final Color colorSecundary;
 
-  const SlideShow({required this.slidesImages});
+  const SlideShow(
+      {required this.slidesImages,
+      this.pointsUp =
+          false, //Se inicializa en false, para finar los puntos en la parte inferior de la pantalla
+      this.colorPrimary = Colors.red,
+      this.colorSecundary = Colors.grey});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => new SliderModel(),
-      child: Center(
-        child: Column(
-          children: [
-            Expanded(
-              child: _Slides(this.slidesImages),
-            ),
-            _Dots(this.slidesImages.length)
-          ],
+      child: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              if (this.pointsUp)
+                _Dots(this.slidesImages.length, this.colorPrimary,
+                    this.colorSecundary),
+              Expanded(
+                child: _Slides(this.slidesImages),
+              ),
+              if (!this.pointsUp)
+                _Dots(this.slidesImages.length, this.colorPrimary,
+                    this.colorSecundary),
+            ],
+          ),
         ),
       ),
     );
@@ -88,8 +103,10 @@ class _Slide extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
   final int totalSlide;
+  final Color colorPrimary;
+  final Color colorSecundary;
 
-  _Dots(this.totalSlide); //Constructor
+  _Dots(this.totalSlide, this.colorPrimary, this.colorSecundary); //Constructor
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +116,10 @@ class _Dots extends StatelessWidget {
       //color: Colors.green,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(this.totalSlide,
-            (index) => _Dot(index)), //Generated, gerena una lista.
+        children: List.generate(
+            this.totalSlide,
+            (index) => _Dot(index, this.colorPrimary,
+                this.colorSecundary)), //Generated, gerena una lista.
       ),
     );
   }
@@ -108,8 +127,10 @@ class _Dots extends StatelessWidget {
 
 class _Dot extends StatelessWidget {
   final int index;
+  final Color colorPrimary;
+  final Color colorSecundary;
 
-  const _Dot(this.index);
+  const _Dot(this.index, this.colorPrimary, this.colorSecundary);
 
   @override
   Widget build(BuildContext context) {
@@ -125,8 +146,8 @@ class _Dot extends StatelessWidget {
       height: 12,
       decoration: BoxDecoration(
         color: (pageViewIndex >= index - 0.5 && pageViewIndex < index + 0.5)
-            ? Colors.red
-            : Colors.grey,
+            ? this.colorPrimary
+            : this.colorSecundary,
         shape: BoxShape.circle,
       ),
     );

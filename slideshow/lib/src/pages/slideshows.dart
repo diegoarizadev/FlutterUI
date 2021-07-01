@@ -6,7 +6,9 @@ class SlideShowCustomPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange,
       body: SlideShow(
+        pointsUp: true,
         slidesImages: [
           SvgPicture.asset('assets/svg/s1.svg'),
           SvgPicture.asset('assets/svg/s2.svg'),
@@ -15,6 +17,8 @@ class SlideShowCustomPage extends StatelessWidget {
           SvgPicture.asset('assets/svg/s5.svg'),
           SvgPicture.asset('assets/svg/s6.svg')
         ],
+        colorPrimary: Colors.red,
+        colorSecundary: Colors.grey,
       ),
     );
   }
