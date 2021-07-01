@@ -31,21 +31,21 @@ class SlideShowModel with ChangeNotifier {
 
   set colorPrimary(Color color) {
     this._colorPrimary = color;
-    notifyListeners();
+    // notifyListeners();
   }
 
   set colorSecundary(Color color) {
     this._colorSecundary = color;
-    notifyListeners();
+    // notifyListeners();
   }
 
   set bulletPrimary(double value) {
     this._bulletPrimary = value;
-    notifyListeners();
+    // notifyListeners();
   }
 
   set bulletSecundary(double value) {
     this._bulletSecundary = value;
-    notifyListeners();
+    // notifyListeners();
   }
 }
