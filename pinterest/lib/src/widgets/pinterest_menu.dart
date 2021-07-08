@@ -43,7 +43,18 @@ class PinteresMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      child: Text('Hola desde el menu'),
+      width: 250,
+      height: 60,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(90)),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.black38,
+              spreadRadius: -5,
+              blurRadius: 10,
+            ),
+          ]),
     ));
   }
 }
