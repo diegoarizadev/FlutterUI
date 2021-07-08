@@ -2,17 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class IconHeader extends StatelessWidget {
-  final colorWhite = Colors.white.withOpacity(0.7);
+  final IconData icon;
+  final String tittle;
+  final String subTittle;
+  final Color color0ne;
+  final Color colorTw0;
+
+  const IconHeader({
+    required this.icon,
+    required this.tittle,
+    required this.subTittle,
+    this.color0ne = Colors.grey,
+    this.colorTw0 = Colors.blueGrey,
+  });
+
   @override
   Widget build(BuildContext context) {
+    final colorWhite = Colors.white.withOpacity(0.7);
     return Stack(
       children: [
-        _IconHeaderBackground(),
+        _IconHeaderBackground(
+          color0ne: this.color0ne,
+          colorTw0: this.colorTw0,
+        ),
         Positioned(
           top: -50,
           left: -70,
           child: FaIcon(
-            FontAwesomeIcons.plus,
+            this.icon,
             size: 250,
             color: Colors.white.withOpacity(0.2),
           ),
@@ -25,14 +42,14 @@ class IconHeader extends StatelessWidget {
                   .infinity, //Este widget se expande al ancho del dispositivo lo cual centra todos los elementos.
             ),
             Text(
-              'Haz solicitado',
+              this.tittle,
               style: TextStyle(fontSize: 20, color: colorWhite),
             ),
             SizedBox(
               height: 20,
             ),
             Text(
-              'Asistencia Medica',
+              this.subTittle,
               style: TextStyle(
                 fontSize: 27,
                 fontWeight: FontWeight.bold,
@@ -43,7 +60,7 @@ class IconHeader extends StatelessWidget {
               height: 20,
             ),
             FaIcon(
-              FontAwesomeIcons.plus,
+              this.icon,
               size: 80,
               color: Colors.white,
             ),
@@ -55,9 +72,13 @@ class IconHeader extends StatelessWidget {
 }
 
 class _IconHeaderBackground extends StatelessWidget {
+  final Color color0ne;
+  final Color colorTw0;
+
   const _IconHeaderBackground({
-    Key? key,
-  }) : super(key: key);
+    required this.color0ne,
+    required this.colorTw0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +86,6 @@ class _IconHeaderBackground extends StatelessWidget {
       width: double.infinity,
       height: 300,
       decoration: BoxDecoration(
-//        color: Colors.blueGrey,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(75),
         ),
@@ -73,8 +93,8 @@ class _IconHeaderBackground extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xff526BF6),
-            Color(0xff67ACF2),
+            this.color0ne,
+            this.colorTw0,
           ],
         ),
       ),
