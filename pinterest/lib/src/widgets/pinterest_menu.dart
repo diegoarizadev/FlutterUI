@@ -10,7 +10,7 @@ class PinterestMenu extends StatelessWidget {
 }
 
 class PinterestButton {
-  final Function onPressed;
+  final Function() onPressed;
   final IconData Icon;
 
   PinterestButton({required this.onPressed, required this.Icon});
@@ -42,10 +42,23 @@ class PinteresMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-      child: _MenuItems(
+        child: _PinterestMenuBackground(
+      Child: _MenuItems(
         menuItems: items,
       ),
+    ));
+  }
+}
+
+class _PinterestMenuBackground extends StatelessWidget {
+  final Widget Child;
+
+  const _PinterestMenuBackground({required this.Child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: this.Child,
       width: 250,
       height: 60,
       decoration: BoxDecoration(
@@ -58,7 +71,7 @@ class PinteresMenu extends StatelessWidget {
               blurRadius: 10,
             ),
           ]),
-    ));
+    );
   }
 }
 
@@ -88,8 +101,17 @@ class _PinteresMenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Icon(this.item.Icon),
+    return GestureDetector(
+      onTap: item.onPressed,
+      behavior: HitTestBehavior
+          .translucent, //Para lagunos dispositivos que no detectan la acción de los botones
+      child: Container(
+        child: Icon(
+          item.Icon,
+          size: 28,
+          color: Colors.blueGrey,
+        ),
+      ),
     );
   }
 }
