@@ -43,15 +43,14 @@ class PinteresMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: ChangeNotifierProvider(
+    return ChangeNotifierProvider(
       create: (_) => _MenuModel(), //Instancia del model para el provider
       child: _PinterestMenuBackground(
         Child: _MenuItems(
           menuItems: items,
         ),
       ),
-    ));
+    );
   }
 }
 
@@ -111,7 +110,6 @@ class _PinteresMenuButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Provider.of<_MenuModel>(context, listen: false).itemSelected = index;
-
         item.onPressed();
       },
       behavior: HitTestBehavior
