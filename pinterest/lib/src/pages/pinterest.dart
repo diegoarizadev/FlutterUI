@@ -24,6 +24,30 @@ class _PinterestMenuCenter extends StatelessWidget {
     final widhScreen =
         MediaQuery.of(context).size.width; //Ancho exacto de la pantalla
     final hidden = Provider.of<_MenuModel>(context).hiddenMenu;
+
+    final items = [
+      PinterestButton(
+          onPressed: () {
+            print('Icons.pie_chart');
+          },
+          Icon: Icons.pie_chart),
+      PinterestButton(
+          onPressed: () {
+            print('Icons.search');
+          },
+          Icon: Icons.search),
+      PinterestButton(
+          onPressed: () {
+            print('Icons.notifications');
+          },
+          Icon: Icons.notifications),
+      PinterestButton(
+          onPressed: () {
+            print('Icons.supervised_user_circle');
+          },
+          Icon: Icons.supervised_user_circle)
+    ];
+
     return Positioned(
       bottom: 30,
       child: Container(
@@ -32,6 +56,10 @@ class _PinterestMenuCenter extends StatelessWidget {
         child: Align(
           child: PinteresMenu(
             hidden: hidden,
+            //backgroundColor: Colors.amber,
+            inactiveColor: Colors.black,
+            activeColor: Colors.green,
+            items: items,
           ),
         ),
       ),
