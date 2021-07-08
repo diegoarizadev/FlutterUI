@@ -43,6 +43,9 @@ class PinteresMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
+      child: _MenuItems(
+        menuItems: items,
+      ),
       width: 250,
       height: 60,
       decoration: BoxDecoration(
@@ -56,5 +59,37 @@ class PinteresMenu extends StatelessWidget {
             ),
           ]),
     ));
+  }
+}
+
+class _MenuItems extends StatelessWidget {
+  final List<PinterestButton> menuItems;
+
+  const _MenuItems({required this.menuItems});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List.generate(
+            menuItems.length,
+            (index) => _PinteresMenuButton(
+                  index: index,
+                  item: menuItems[index],
+                )));
+  }
+}
+
+class _PinteresMenuButton extends StatelessWidget {
+  final int index;
+  final PinterestButton item;
+
+  const _PinteresMenuButton({required this.index, required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Icon(this.item.Icon),
+    );
   }
 }
