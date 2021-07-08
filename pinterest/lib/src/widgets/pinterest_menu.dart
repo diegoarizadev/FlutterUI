@@ -41,13 +41,21 @@ class PinteresMenu extends StatelessWidget {
         Icon: Icons.supervised_user_circle)
   ];
 
+  final bool hidden;
+
+  PinteresMenu({this.hidden = true});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _MenuModel(), //Instancia del model para el provider
-      child: _PinterestMenuBackground(
-        Child: _MenuItems(
-          menuItems: items,
+      child: AnimatedOpacity(
+        duration: Duration(milliseconds: 300),
+        opacity: (this.hidden) ? 1 : 0,
+        child: _PinterestMenuBackground(
+          Child: _MenuItems(
+            menuItems: items,
+          ),
         ),
       ),
     );

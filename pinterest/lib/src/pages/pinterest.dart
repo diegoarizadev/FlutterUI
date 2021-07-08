@@ -1,15 +1,19 @@
 import 'package:custompainter/src/widgets/pinterest_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 class PinterestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        PinterestGrid(),
-        _PinterestMenuCenter(),
-      ]),
+    return ChangeNotifierProvider(
+      create: (_) => _MenuModel(),
+      child: Scaffold(
+        body: Stack(children: [
+          PinterestGrid(),
+          _PinterestMenuCenter(),
+        ]),
+      ),
     );
   }
 }
@@ -19,13 +23,16 @@ class _PinterestMenuCenter extends StatelessWidget {
   Widget build(BuildContext context) {
     final widhScreen =
         MediaQuery.of(context).size.width; //Ancho exacto de la pantalla
+    final hidden = Provider.of<_MenuModel>(context).hiddenMenu;
     return Positioned(
       bottom: 30,
       child: Container(
         //color: Colors.blue,
         width: widhScreen,
         child: Align(
-          child: PinteresMenu(),
+          child: PinteresMenu(
+            hidden: hidden,
+          ),
         ),
       ),
     );
@@ -61,10 +68,13 @@ class _PinterestGridState extends State<PinterestGrid> {
   void initState() {
     scrollController.addListener(() {
       print('Listener Scroll : ${scrollController.offset}');
-      if (scrollController.offset > scrollOld) {
+      if (scrollController.offset > scrollOld &&
+          scrollController.offset > 10.0) {
         print('Ocultar menu');
+        Provider.of<_MenuModel>(context, listen: false).hiddenMenu = false;
       } else {
         print('Mostrar menu');
+        Provider.of<_MenuModel>(context, listen: false).hiddenMenu = true;
       }
       scrollOld = scrollController.offset;
     });
@@ -96,5 +106,15 @@ class _PinterestItem extends StatelessWidget {
             child: new Text('$index'),
           ),
         ));
+  }
+}
+
+class _MenuModel with ChangeNotifier {
+  bool _hiddenMenu = true;
+
+  bool get hiddenMenu => this._hiddenMenu;
+  set hiddenMenu(bool value) {
+    this._hiddenMenu = value;
+    notifyListeners();
   }
 }
