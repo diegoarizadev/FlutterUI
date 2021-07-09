@@ -4,7 +4,12 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _MainScroll(),
+      body: Stack(
+        children: [
+          _MainScroll(),
+          Positioned(bottom: 0, right: 0, child: _NewList())
+        ],
+      ),
       //_ListTasks(), //_HeaderTittle(), //
     );
   }
@@ -186,5 +191,46 @@ class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
     return maxheight != oldDelegate.maxheight ||
         minheight != oldDelegate.minheight ||
         child != oldDelegate.child;
+  }
+}
+
+class _NewList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final size =
+        MediaQuery.of(context).size; //todas las dimensiones de las pantallas
+
+    return ButtonTheme(
+      minWidth: size.width * 0.9,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Color(0xffED6762)),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(50),
+              ),
+            ),
+          ),
+        ),
+        onPressed: () {
+          print('Crear nueva lista');
+        },
+        child: Container(
+          height: size.height * 0.1,
+          width: size.width * 0.8,
+          child: Center(
+            child: Text(
+              'CREAR NUEVA LISTA',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
