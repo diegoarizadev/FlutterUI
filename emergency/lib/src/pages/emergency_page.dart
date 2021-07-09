@@ -52,6 +52,8 @@ class EmergencyPage extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 180),
           child: ListView(
+            physics:
+                BouncingScrollPhysics(), //Elimina la animaci´øn o subrayado al final de la pantalla en Android
             children: [
               SizedBox(
                 height: 90,
@@ -60,7 +62,7 @@ class EmergencyPage extends StatelessWidget {
             ],
           ),
         ),
-        PageHeader(),
+        _Header(),
       ],
     )
         //BottongotdoTemp(),
@@ -87,15 +89,31 @@ class BottongotdoTemp extends StatelessWidget {
   }
 }
 
-class PageHeader extends StatelessWidget {
+class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return IconHeader(
-      icon: FontAwesomeIcons.plusCircle,
-      tittle: 'Haz solicitado.',
-      subTittle: 'Asistencia Medica.',
-      color0ne: Color(0xff526BF6),
-      colorTw0: Color(0xff67ACF2),
+    return Stack(
+      children: [
+        IconHeader(
+          icon: FontAwesomeIcons.plusCircle,
+          tittle: 'Haz solicitado.',
+          subTittle: 'Asistencia Medica.',
+          color0ne: Color(0xff526BF6),
+          colorTw0: Color(0xff67ACF2),
+        ),
+        Positioned(
+            right: 0,
+            top: 45,
+            child: RawMaterialButton(
+              onPressed: () {},
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(15.0),
+              child: FaIcon(
+                FontAwesomeIcons.ellipsisV,
+                color: Colors.white,
+              ),
+            )),
+      ],
     );
   }
 }
