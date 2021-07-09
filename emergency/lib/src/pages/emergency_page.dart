@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:emergency/src/widgets/buttonCustom.dart';
 import 'package:emergency/src/widgets/header.dart';
 import 'package:flutter/material.dart';
@@ -34,14 +35,17 @@ class EmergencyPage extends StatelessWidget {
     ];
 
     List<Widget> itemMap = items
-        .map((item) => BottonCuston(
-              icon: item.icon,
-              text: item.texto,
-              color0ne: item.color1,
-              colorTw0: item.color2,
-              onPress: () {
-                print('Click : $item');
-              },
+        .map((item) => FadeInLeft(
+              duration: Duration(milliseconds: 250),
+              child: BottonCuston(
+                icon: item.icon,
+                text: item.texto,
+                color0ne: item.color1,
+                colorTw0: item.color2,
+                onPress: () {
+                  print('Click : $item');
+                },
+              ),
             ))
         .toList();
 
