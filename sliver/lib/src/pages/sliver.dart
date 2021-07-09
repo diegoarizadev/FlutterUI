@@ -4,28 +4,44 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _HeaderTittle(), //_ListTasks(),
+      body: _ListTasks(), //_HeaderTittle(), //
     );
   }
 }
 
 class _ListTasks extends StatelessWidget {
+  final items = [
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 20,
-        itemBuilder: (BuildContext context, int index) => _ListItem());
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) => items[index]);
   }
 }
 
 class _ListItem extends StatelessWidget {
+  final String titulo;
+  final Color color;
+
+  const _ListItem({required this.titulo, required this.color});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.all(30),
       child: Text(
-        'Naranjas',
+        this.titulo, //'Naranjas',
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -35,7 +51,7 @@ class _ListItem extends StatelessWidget {
       height: 130,
       margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.blueGrey,
+        color: this.color, //Colors.blueGrey,
         borderRadius: BorderRadius.circular(30),
       ),
     );
