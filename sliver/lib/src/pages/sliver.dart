@@ -4,7 +4,8 @@ class SliverListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _ListTasks(), //_HeaderTittle(), //
+      body: _MainScroll(),
+      //_ListTasks(), //_HeaderTittle(), //
     );
   }
 }
@@ -101,6 +102,19 @@ class _HeaderTittle extends StatelessWidget {
             ),
           ],
         ),
+      ],
+    );
+  }
+}
+
+class _MainScroll extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          backgroundColor: Colors.red,
+        )
       ],
     );
   }
