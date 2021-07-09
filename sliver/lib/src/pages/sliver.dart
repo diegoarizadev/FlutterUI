@@ -108,13 +108,37 @@ class _HeaderTittle extends StatelessWidget {
 }
 
 class _MainScroll extends StatelessWidget {
+  final items = [
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
+    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
+    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
+    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          floating: true,
           backgroundColor: Colors.red,
-        )
+          title: _HeaderTittle(),
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate(items),
+        ),
       ],
     );
   }
