@@ -7,8 +7,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: true,
       title: 'Material App',
+      debugShowCheckedModeBanner: false,
       home: Page0ne(),
     );
   }
