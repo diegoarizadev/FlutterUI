@@ -1,3 +1,4 @@
+import 'package:animate/src/pages/twitter_page.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,14 @@ class Page0ne extends StatelessWidget {
         title:
             FadeIn(delay: Duration(milliseconds: 200), child: Text('Animate')),
         actions: [
-          IconButton(onPressed: () {}, icon: FaIcon(FontAwesomeIcons.twitter)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => TwitterPage()));
+              },
+              icon: FaIcon(FontAwesomeIcons.twitter)),
           IconButton(
               onPressed: () {
                 Navigator.push(

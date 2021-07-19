@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: TwitterPage(), //Page0ne(),
+      home: Page0ne(), //TwitterPage(),
     );
   }
 }
