@@ -1,3 +1,4 @@
+import 'package:animate/src/pages/navigation.dart';
 import 'package:animate/src/pages/pages0ne.dart';
 import 'package:animate/src/pages/twitter_page.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: Page0ne(), //TwitterPage(),
+      home: NavigationPage(), //Page0ne(), //TwitterPage(),
     );
   }
 }
