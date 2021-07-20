@@ -1,3 +1,4 @@
+import 'package:animate/src/pages/navigation.dart';
 import 'package:animate/src/pages/twitter_page.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,31 +11,46 @@ class Page0ne extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            FadeIn(delay: Duration(milliseconds: 200), child: Text('Animate')),
+        title: FadeIn(
+          delay: const Duration(milliseconds: 200),
+          child: const Text('Animate'),
+        ),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => TwitterPage()));
-              },
-              icon: FaIcon(FontAwesomeIcons.twitter)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => TwitterPage(),
+                ),
+              );
+            },
+            icon: const FaIcon(FontAwesomeIcons.twitter),
+          ),
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (BuildContext context) => Page0ne()));
-              },
-              icon: FaIcon(FontAwesomeIcons.napster)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (BuildContext context) => Page0ne(),
+                ),
+              );
+            },
+            icon: const FaIcon(FontAwesomeIcons.napster),
+          ),
         ],
       ),
       floatingActionButton: ElasticInRight(
         child: FloatingActionButton(
-          onPressed: () {},
-          child: FaIcon(FontAwesomeIcons.play),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => NavigationPage(),
+              ),
+            );
+          },
+          child: const FaIcon(FontAwesomeIcons.play),
         ),
       ),
       body: Center(
@@ -42,16 +58,16 @@ class Page0ne extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElasticIn(
-              delay: Duration(milliseconds: 1500),
-              child: Icon(
+              delay: const Duration(milliseconds: 1500),
+              child: const Icon(
                 Icons.new_releases,
                 color: Colors.blue,
                 size: 40,
               ),
             ),
             FadeInDown(
-              delay: Duration(milliseconds: 200),
-              child: Text(
+              delay: const Duration(milliseconds: 200),
+              child: const Text(
                 'Titulo',
                 style: TextStyle(
                   fontSize: 40,
@@ -60,8 +76,8 @@ class Page0ne extends StatelessWidget {
               ),
             ),
             FadeInDown(
-              delay: Duration(milliseconds: 800),
-              child: Text(
+              delay: const Duration(milliseconds: 800),
+              child: const Text(
                 'Titulo pequeño',
                 style: TextStyle(
                   fontSize: 20,
@@ -70,7 +86,7 @@ class Page0ne extends StatelessWidget {
               ),
             ),
             FadeInRight(
-              delay: Duration(milliseconds: 1100),
+              delay: const Duration(milliseconds: 1100),
               child: Container(
                 width: 220,
                 height: 2,

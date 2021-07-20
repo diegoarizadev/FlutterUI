@@ -19,15 +19,15 @@ class _TwitterPageState extends State<TwitterPage> {
           });
         },
         backgroundColor: Colors.red,
-        child: FaIcon(FontAwesomeIcons.play),
+        child: const FaIcon(FontAwesomeIcons.play),
       ),
-      backgroundColor: Color(0xff1da1f2),
+      backgroundColor: const Color(0xff1da1f2),
       body: Center(
         child: ZoomOut(
           animate: activateAnimated, //activa la animación,
           from: 30, //30 veces mas grande.
-          duration: Duration(seconds: 1),
-          child: FaIcon(
+          duration: const Duration(seconds: 1),
+          child: const FaIcon(
             FontAwesomeIcons.twitter,
             color: Colors.white,
             size: 45,

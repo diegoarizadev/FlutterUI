@@ -7,14 +7,14 @@ class NavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => new _NotificationModel(),
+      create: (_) => _NotificationModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Notifications Pages'),
+          title: const Text('Notifications Pages'),
           backgroundColor: Colors.red,
         ),
-        floatingActionButton: ButtonFloating(),
-        bottomNavigationBar: ButtonMavigation(),
+        floatingActionButton: const ButtonFloating(),
+        bottomNavigationBar: const ButtonMavigation(),
       ),
     );
   }
@@ -30,8 +30,8 @@ class ButtonMavigation extends StatelessWidget {
         currentIndex: 0,
         selectedItemColor: Colors.red,
         items: [
-          BottomNavigationBarItem(
-            icon: const FaIcon(
+          const BottomNavigationBarItem(
+            icon: FaIcon(
               FontAwesomeIcons.bone,
             ),
             label: 'Bone',
@@ -57,7 +57,7 @@ class ButtonMavigation extends StatelessWidget {
                       child: Container(
                         child: Text(
                           '$numNotifications',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 7.0),
@@ -65,7 +65,7 @@ class ButtonMavigation extends StatelessWidget {
                         alignment: Alignment.center,
                         width: 12,
                         height: 12,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.redAccent,
                           shape: BoxShape.circle,
                         ),
@@ -78,7 +78,7 @@ class ButtonMavigation extends StatelessWidget {
             // icon:
             label: 'Motifications',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: FaIcon(
               FontAwesomeIcons.dog,
             ),
@@ -122,15 +122,15 @@ class ButtonFloating extends StatelessWidget {
 class _NotificationModel extends ChangeNotifier {
   int _num = 0;
   late AnimationController _bounceController;
-  int get num => this._num;
+  int get num => _num;
   set num(int value) {
-    this._num = value;
+    _num = value;
     notifyListeners();
   }
 
-  AnimationController get bounceController => this._bounceController;
+  AnimationController get bounceController => _bounceController;
   set bounceController(AnimationController value) {
-    this._bounceController = value;
+    _bounceController = value;
     notifyListeners();
   }
 }
