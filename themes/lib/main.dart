@@ -1,5 +1,4 @@
-import 'package:custompainter/src/pages/slideshows.dart';
-
+import 'package:custompainter/src/pages/launcher.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: SlideShowCustomPage(),
+      home: LauncherPage(), //SlideShowCustomPage(),
     );
   }
 }
