@@ -8,41 +8,22 @@ import 'package:custompainter/src/pages/sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-final pageRouter = <_Route>[
-  _Route(
-      iconData: FontAwesomeIcons.slideshare,
-      title: 'SlideShow',
-      page: SlideShowCustomPage()),
-  _Route(
-      iconData: FontAwesomeIcons.ambulance,
-      title: 'Emergencia',
-      page: EmergencyPage()),
-  _Route(
-      iconData: FontAwesomeIcons.heading,
-      title: 'Encabezados',
-      page: HeadersCustom()),
-  _Route(
-      iconData: FontAwesomeIcons.peopleCarry,
-      title: 'Cuadro Animado',
-      page: AnimacionesPages()),
-  _Route(
-      iconData: FontAwesomeIcons.circleNotch,
-      title: 'Barras de progreso',
-      page: PieChartsCustom()),
-  _Route(
-      iconData: FontAwesomeIcons.pinterest,
-      title: 'Pinterest',
-      page: PinterestPage()),
-  _Route(
-      iconData: FontAwesomeIcons.mobile,
-      title: 'slivers',
-      page: SliverListPage())
+final pageRouters = <RouteCustom>[
+  RouteCustom(FontAwesomeIcons.slideshare, 'SlideShow', SlideShowCustomPage()),
+  RouteCustom(FontAwesomeIcons.ambulance, 'Emergencia', EmergencyPage()),
+  RouteCustom(FontAwesomeIcons.heading, 'Encabezados', HeadersCustom()),
+  RouteCustom(
+      FontAwesomeIcons.peopleCarry, 'Cuadro Animado', const AnimacionesPages()),
+  RouteCustom(
+      FontAwesomeIcons.circleNotch, 'Barras de progreso', PieChartsCustom()),
+  RouteCustom(FontAwesomeIcons.pinterest, 'Pinterest', PinterestPage()),
+  RouteCustom(FontAwesomeIcons.mobile, 'slivers', SliverListPage())
 ];
 
-class _Route {
-  final IconData iconData;
+class RouteCustom {
+  final IconData icon;
   final String title;
   final Widget page;
 
-  _Route({required this.iconData, required this.title, required this.page});
+  RouteCustom(this.icon, this.title, this.page);
 }

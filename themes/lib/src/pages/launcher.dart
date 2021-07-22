@@ -1,3 +1,4 @@
+import 'package:custompainter/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -6,6 +7,7 @@ class LauncherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.red,
         title: Text('UIFLutter'),
       ),
       drawer: _MainMenu(), //Menu Hamburguesa.!
@@ -19,23 +21,28 @@ class _ListOpcions extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       physics:
-          BouncingScrollPhysics(), //Para que en android y Ios se vean iguales.
-      separatorBuilder: (context, i) => Divider(
+          const BouncingScrollPhysics(), //Para que en android y Ios se vean iguales.
+      separatorBuilder: (context, i) => const Divider(
         color: Colors.red,
       ),
-      itemCount: 10,
-      itemBuilder: (context, i) => const ListTile(
-        leading: FaIcon(
-          FontAwesomeIcons.slideshare,
-          color: Colors.redAccent,
-        ),
-        title: Text('Hola Mundo'),
-        trailing: Icon(
-          Icons.chevron_right,
-          color: Colors.redAccent,
-        ),
-        onTap: null,
-      ),
+      itemCount: pageRouters.length,
+      itemBuilder: (context, i) => ListTile(
+          leading: FaIcon(
+            pageRouters[i].icon,
+            color: Colors.redAccent,
+          ),
+          title: Text(pageRouters[i].title),
+          trailing: const Icon(
+            Icons.chevron_right,
+            color: Colors.redAccent,
+          ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => pageRouters[i]
+                        .page)); //Navegación a cada una de las paginas.
+          }),
     );
   }
 }
