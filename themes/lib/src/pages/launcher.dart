@@ -65,6 +65,13 @@ class _MainMenu extends StatelessWidget {
             Expanded(
               child: _ListOpcions(),
             ),
+            ListTile(
+              leading: Icon(
+                Icons.light_mode_outlined,
+                color: Colors.redAccent,
+              ),
+              title: Text('Dark Mode'),
+            ),
           ],
         ),
       ),
