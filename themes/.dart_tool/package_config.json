@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "animate_do",
+      "rootUri": "file:///Users/n0rf3n/Documents/FlutterSDk/.pub-cache/hosted/pub.dartlang.org/animate_do-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "async",
       "rootUri": "file:///Users/n0rf3n/Documents/FlutterSDk/.pub-cache/hosted/pub.dartlang.org/async-2.7.0",
       "packageUri": "lib/",
@@ -70,6 +76,12 @@
     {
       "name": "flutter_test",
       "rootUri": "file:///Users/n0rf3n/Documents/FlutterSDk/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/n0rf3n/Documents/FlutterSDk/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -194,7 +206,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-07-21T20:02:50.000207Z",
+  "generated": "2021-07-21T20:38:18.650536Z",
   "generator": "pub",
   "generatorVersion": "2.14.0-250.0.dev"
 }
