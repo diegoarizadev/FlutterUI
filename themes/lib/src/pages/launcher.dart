@@ -48,16 +48,17 @@ class _MainMenu extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(20),
-              width: double.infinity,
-              height: 200.0,
-              child: CircleAvatar(
-                backgroundColor: Colors.redAccent,
-                child: Text(
-                  'DA',
-                  style: TextStyle(
-                    fontSize: 50,
+            SafeArea(
+              child: Container(
+                width: double.infinity,
+                height: 200.0,
+                child: CircleAvatar(
+                  backgroundColor: Colors.redAccent,
+                  child: Text(
+                    'DA',
+                    style: TextStyle(
+                      fontSize: 50,
+                    ),
                   ),
                 ),
               ),
@@ -71,6 +72,23 @@ class _MainMenu extends StatelessWidget {
                 color: Colors.redAccent,
               ),
               title: Text('Dark Mode'),
+              trailing: Switch.adaptive(
+                  value: true,
+                  activeColor: Colors.red,
+                  onChanged:
+                      (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.add_to_home_screen,
+                color: Colors.redAccent,
+              ),
+              title: Text('Custom Theme'),
+              trailing: Switch.adaptive(
+                  value: true,
+                  activeColor: Colors.red,
+                  onChanged:
+                      (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
             ),
           ],
         ),
