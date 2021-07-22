@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:emergency/src/widgets/buttonCustom.dart';
-import 'package:emergency/src/widgets/header.dart';
+import 'package:custompainter/src/widgets/buttonCustom.dart';
+import 'package:custompainter/src/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
