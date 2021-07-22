@@ -85,17 +85,23 @@ class _MainMenu extends StatelessWidget {
                   onChanged:
                       (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
             ),
-            ListTile(
-              leading: Icon(
-                Icons.add_to_home_screen,
-                color: Colors.redAccent,
+            SafeArea(
+              bottom: true,
+              top: false,
+              right: false,
+              left: false,
+              child: ListTile(
+                leading: Icon(
+                  Icons.add_to_home_screen,
+                  color: Colors.redAccent,
+                ),
+                title: Text('Custom Theme'),
+                trailing: Switch.adaptive(
+                    value: true,
+                    activeColor: Colors.red,
+                    onChanged:
+                        (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
               ),
-              title: Text('Custom Theme'),
-              trailing: Switch.adaptive(
-                  value: true,
-                  activeColor: Colors.red,
-                  onChanged:
-                      (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
             ),
           ],
         ),
