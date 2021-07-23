@@ -18,10 +18,17 @@ class MyApp extends StatelessWidget {
     final currentTheme = Provider.of<ThemeChanger>(context).CurrentTheme;
 
     return MaterialApp(
-      theme: currentTheme,
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: LauncherPage(), //SlideShowCustomPage(),
-    );
+        theme: currentTheme,
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        home: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+            print('Orientacion ; $orientation');
+            return Container(
+              child: LauncherPage(),
+            );
+          },
+        ) //LauncherPage(), //SlideShowCustomPage(),
+        );
   }
 }
