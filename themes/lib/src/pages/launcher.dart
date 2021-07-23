@@ -1,6 +1,8 @@
 import 'package:custompainter/src/routes/routes.dart';
+import 'package:custompainter/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class LauncherPage extends StatelessWidget {
   @override
@@ -51,6 +53,8 @@ class _ListOpcions extends StatelessWidget {
 class _MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+
     return Drawer(
       child: Container(
         child: Column(
@@ -59,7 +63,7 @@ class _MainMenu extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 200.0,
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.redAccent,
                   child: Text(
                     'DA',
@@ -74,16 +78,16 @@ class _MainMenu extends StatelessWidget {
               child: _ListOpcions(),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.light_mode_outlined,
                 color: Colors.redAccent,
               ),
-              title: Text('Dark Mode'),
+              title: const Text('Dark Mode'),
               trailing: Switch.adaptive(
-                  value: true,
+                  value: appTheme.Darktheme,
                   activeColor: Colors.red,
-                  onChanged:
-                      (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
+                  onChanged: (value) => appTheme.Darktheme =
+                      value), //Switch.adaptive Se mostrar el Switch de cada S.O.
             ),
             SafeArea(
               bottom: true,
@@ -91,16 +95,16 @@ class _MainMenu extends StatelessWidget {
               right: false,
               left: false,
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.add_to_home_screen,
                   color: Colors.redAccent,
                 ),
-                title: Text('Custom Theme'),
+                title: const Text('Custom Theme'),
                 trailing: Switch.adaptive(
-                    value: true,
+                    value: appTheme.Customtheme,
                     activeColor: Colors.red,
-                    onChanged:
-                        (value) {}), //Switch.adaptive Se mostrar el Switch de cada S.O.
+                    onChanged: (value) => appTheme.Customtheme =
+                        value), //Switch.adaptive Se mostrar el Switch de cada S.O.
               ),
             ),
           ],
