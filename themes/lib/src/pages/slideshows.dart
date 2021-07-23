@@ -1,6 +1,8 @@
+import 'package:custompainter/src/theme/theme.dart';
 import 'package:custompainter/src/widgets/slide_show.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class SlideShowCustomPage extends StatelessWidget {
   @override
@@ -8,7 +10,7 @@ class SlideShowCustomPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.orange,
         body: Column(
-          children: [
+          children: const [
             Expanded(child: MySlideshow()),
             Expanded(child: MySlideshow()),
           ],
@@ -23,6 +25,8 @@ class MySlideshow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context); //Identifica el tema.
+
     return SlideShow(
       bulletPrimary: 25,
       bulletSecundary: 12,
@@ -35,7 +39,9 @@ class MySlideshow extends StatelessWidget {
         SvgPicture.asset('assets/svg/s5.svg'),
         SvgPicture.asset('assets/svg/s6.svg')
       ],
-      colorPrimary: Colors.green,
+      colorPrimary: (appTheme.Darktheme)
+          ? appTheme.CurrentTheme.secondaryHeaderColor
+          : Colors.green,
       colorSecundary: Colors.black,
     );
   }

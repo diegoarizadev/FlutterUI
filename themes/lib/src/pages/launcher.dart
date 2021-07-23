@@ -21,22 +21,25 @@ class LauncherPage extends StatelessWidget {
 class _ListOpcions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme =
+        Provider.of<ThemeChanger>(context).CurrentTheme; //Identifica el tema.
+
     return ListView.separated(
       physics:
           const BouncingScrollPhysics(), //Para que en android y Ios se vean iguales.
-      separatorBuilder: (context, i) => const Divider(
-        color: Colors.red,
+      separatorBuilder: (context, i) => Divider(
+        color: appTheme.secondaryHeaderColor, //Colors.red,
       ),
       itemCount: pageRouters.length,
       itemBuilder: (context, i) => ListTile(
           leading: FaIcon(
             pageRouters[i].icon,
-            color: Colors.redAccent,
+            color: appTheme.colorScheme.secondary,
           ),
           title: Text(pageRouters[i].title),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.chevron_right,
-            color: Colors.redAccent,
+            color: appTheme.colorScheme.secondary,
           ),
           onTap: () {
             Navigator.push(
@@ -63,9 +66,9 @@ class _MainMenu extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: 200.0,
-                child: const CircleAvatar(
-                  backgroundColor: Colors.redAccent,
-                  child: Text(
+                child: CircleAvatar(
+                  backgroundColor: appTheme.CurrentTheme.secondaryHeaderColor,
+                  child: const Text(
                     'DA',
                     style: TextStyle(
                       fontSize: 50,
@@ -78,14 +81,14 @@ class _MainMenu extends StatelessWidget {
               child: _ListOpcions(),
             ),
             ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.light_mode_outlined,
-                color: Colors.redAccent,
+                color: appTheme.CurrentTheme.secondaryHeaderColor,
               ),
               title: const Text('Dark Mode'),
               trailing: Switch.adaptive(
                   value: appTheme.Darktheme,
-                  activeColor: Colors.red,
+                  activeColor: appTheme.CurrentTheme.secondaryHeaderColor,
                   onChanged: (value) => appTheme.Darktheme =
                       value), //Switch.adaptive Se mostrar el Switch de cada S.O.
             ),
@@ -95,14 +98,14 @@ class _MainMenu extends StatelessWidget {
               right: false,
               left: false,
               child: ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.add_to_home_screen,
-                  color: Colors.redAccent,
+                  color: appTheme.CurrentTheme.secondaryHeaderColor,
                 ),
                 title: const Text('Custom Theme'),
                 trailing: Switch.adaptive(
                     value: appTheme.Customtheme,
-                    activeColor: Colors.red,
+                    activeColor: appTheme.CurrentTheme.secondaryHeaderColor,
                     onChanged: (value) => appTheme.Customtheme =
                         value), //Switch.adaptive Se mostrar el Switch de cada S.O.
               ),
