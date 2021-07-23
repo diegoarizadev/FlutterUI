@@ -1,4 +1,6 @@
+import 'package:custompainter/src/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SliverListPage extends StatelessWidget {
   @override
@@ -7,7 +9,11 @@ class SliverListPage extends StatelessWidget {
       body: Stack(
         children: [
           _MainScroll(),
-          Positioned(bottom: 0, right: 0, child: _NewList())
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: _NewList(),
+          ),
         ],
       ),
       //_ListTasks(), //_HeaderTittle(), //
@@ -17,14 +23,38 @@ class SliverListPage extends StatelessWidget {
 
 class _ListTasks extends StatelessWidget {
   final items = [
-    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
-    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
-    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
-    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
-    _ListItem(titulo: 'Orange', color: Color(0xffF08F66)),
-    _ListItem(titulo: 'Family', color: Color(0xffF2A38A)),
-    _ListItem(titulo: 'Subscriptions', color: Color(0xffF7CDD5)),
-    _ListItem(titulo: 'Books', color: Color(0xffFCEBAF)),
+    _ListItem(
+      titulo: 'Orange',
+      color: Color(0xffF08F66),
+    ),
+    _ListItem(
+      titulo: 'Family',
+      color: Color(0xffF2A38A),
+    ),
+    _ListItem(
+      titulo: 'Subscriptions',
+      color: Color(0xffF7CDD5),
+    ),
+    _ListItem(
+      titulo: 'Books',
+      color: Color(0xffFCEBAF),
+    ),
+    _ListItem(
+      titulo: 'Orange',
+      color: Color(0xffF08F66),
+    ),
+    _ListItem(
+      titulo: 'Family',
+      color: Color(0xffF2A38A),
+    ),
+    _ListItem(
+      titulo: 'Subscriptions',
+      color: Color(0xffF7CDD5),
+    ),
+    _ListItem(
+      titulo: 'Books',
+      color: Color(0xffFCEBAF),
+    ),
   ];
 
   @override
@@ -43,21 +73,23 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Text(
-        this.titulo, //'Naranjas',
+        titulo, //'Naranjas',
         style: TextStyle(
-          color: Colors.white,
+          color: (appTheme.Darktheme) ? Colors.grey : Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),
       ),
       height: 130,
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: this.color, //Colors.blueGrey,
+        color: color, //Colors.blueGrey,
         borderRadius: BorderRadius.circular(30),
       ),
     );
@@ -67,24 +99,27 @@ class _ListItem extends StatelessWidget {
 class _HeaderTittle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
+
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: Text(
             'Nuevo',
             style: TextStyle(
-              color: Color(0xff532128),
+              color:
+                  (appTheme.Darktheme) ? Colors.grey : const Color(0xff532128),
               fontSize: 50,
             ),
           ),
         ),
         Stack(
           children: [
-            SizedBox(
+            const SizedBox(
               width: 100,
             ),
             Positioned(
@@ -92,14 +127,18 @@ class _HeaderTittle extends StatelessWidget {
               child: Container(
                 width: 150,
                 height: 8,
-                color: Color(0xfff7cdd5),
+                color: (appTheme.Darktheme)
+                    ? Colors.grey
+                    : const Color(0xfff7cdd5),
               ),
             ),
             Container(
               child: Text(
                 'Lista',
                 style: TextStyle(
-                  color: Color(0xffd93a30),
+                  color: (appTheme.Darktheme)
+                      ? Colors.grey
+                      : const Color(0xffd93a30),
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
                 ),
@@ -134,6 +173,7 @@ class _MainScroll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context);
     return CustomScrollView(
       slivers: [
         SliverPersistentHeader(
@@ -143,14 +183,14 @@ class _MainScroll extends StatelessWidget {
               maxheight: 200,
               child: Container(
                 alignment: Alignment.centerLeft,
-                color: Colors.white,
+                color: appTheme.CurrentTheme.scaffoldBackgroundColor,
                 child: _HeaderTittle(),
               ),
             )),
         SliverList(
           delegate: SliverChildListDelegate([
             ...items,
-            SizedBox(
+            const SizedBox(
               //Espacio para el final del Scroll
               height: 100,
             )
@@ -200,13 +240,18 @@ class _NewList extends StatelessWidget {
     final size =
         MediaQuery.of(context).size; //todas las dimensiones de las pantallas
 
+    final appTheme = Provider.of<ThemeChanger>(context);
+
     return ButtonTheme(
       minWidth: size.width * 0.9,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xffED6762)),
+          backgroundColor: (appTheme.Darktheme)
+              ? MaterialStateProperty.all<Color>(
+                  appTheme.CurrentTheme.colorScheme.secondary)
+              : MaterialStateProperty.all<Color>(const Color(0xffED6762)),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
+            const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(50),
               ),
@@ -223,7 +268,7 @@ class _NewList extends StatelessWidget {
             child: Text(
               'CREAR NUEVA LISTA',
               style: TextStyle(
-                  color: Colors.white,
+                  color: appTheme.CurrentTheme.scaffoldBackgroundColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 2),
